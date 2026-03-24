@@ -35,11 +35,10 @@ export default function Sidebar({ role }) {
   const links = menus[role] || [];
 
   return (
-    // Added flex, flex-col, and h-full to make the sidebar take full height
-    <aside className="w-64 bg-gray-900 text-white h-full flex flex-col shadow-xl md:shadow-none border-r border-gray-800/50">
+    <aside className="w-full h-full bg-gray-900 text-white flex flex-col border-r border-gray-800/50">
       
       {/* Scrollable Navigation Area */}
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 overflow-y-auto p-4 pb-0">
         <nav className="space-y-2">
           {links.map((link) => {
             const Icon = link.icon;
@@ -64,7 +63,7 @@ export default function Sidebar({ role }) {
       </div>
 
       {/* Pinned Logout Button at the Bottom */}
-      <div className="flex-none p-4 border-t border-gray-800 bg-gray-900">
+      <div className="flex-none p-4 mt-2 border-t border-gray-800 bg-gray-900">
         <Link 
           href="/" 
           className="flex items-center gap-3 px-4 py-3 rounded-lg text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors font-medium group"
