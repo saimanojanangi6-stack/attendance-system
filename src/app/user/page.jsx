@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, CheckCircle2, Camera } from "lucide-react";
+import { CalendarDays, Clock, CheckCircle2, Camera, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export default function UserDashboard() {
@@ -37,7 +37,9 @@ export default function UserDashboard() {
           {/* Attendance Summary Card */}
           <div className="bg-white/70 backdrop-blur-xl p-6 md:p-8 rounded-[2rem] border border-white shadow-sm hover:shadow-md transition-all lg:col-span-2">
             <div className="flex items-center justify-center md:justify-start gap-3 mb-6 md:mb-8">
-              <div className="p-2 sm:p-3 bg-blue-50 text-blue-600 rounded-xl shadow-inner"><CalendarDays size={24} /></div>
+              <div className="p-2 sm:p-3 bg-blue-50 text-blue-600 rounded-xl shadow-inner">
+                <CalendarDays size={24} />
+              </div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">Monthly Summary</h3>
             </div>
             
@@ -61,8 +63,8 @@ export default function UserDashboard() {
                 <span className="text-gray-600 text-xs sm:text-sm">Attendance Rate</span>
                 <span className="text-green-600 bg-green-50 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm">90.9%</span>
               </div>
-              <div className="w-full bg-gray-100 rounded-full h-3 md:h-4 overflow-hidden shadow-inner">
-                <div className="bg-gradient-to-r from-green-400 to-green-500 h-full rounded-full relative" style={{ width: '91%' }}>
+              <div className="w-full bg-gray-100 rounded-full h-3 md:h-4 overflow-hidden shadow-inner relative">
+                <div className="bg-gradient-to-r from-green-400 to-green-500 h-full rounded-full relative transition-all duration-1000 ease-out" style={{ width: '91%' }}>
                   <div className="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
                 </div>
               </div>
@@ -92,26 +94,32 @@ export default function UserDashboard() {
         <div className="bg-white/70 backdrop-blur-xl rounded-[2rem] border border-white shadow-sm overflow-hidden">
           <div className="p-4 md:p-6 border-b border-gray-100/50 bg-white/50 flex justify-between items-center">
             <h3 className="text-base md:text-lg font-bold text-gray-900">Recent Logs</h3>
-            <button className="text-xs md:text-sm font-semibold text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3 py-1 rounded-full">View All</button>
+            {/* Updated this to be a functioning Next.js Link instead of a dead button */}
+            <Link 
+              href="/user/my-attendance" 
+              className="flex items-center gap-1 text-xs md:text-sm font-semibold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-full transition-colors group"
+            >
+              View All <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
           </div>
           <div className="divide-y divide-gray-50/50 bg-white/30">
-             {[1, 2, 3].map((item) => (
-               <div key={item} className="p-4 md:p-5 px-4 md:px-6 flex items-center justify-between hover:bg-white transition-colors cursor-pointer">
-                  <div className="flex items-center gap-3 md:gap-4 overflow-hidden">
-                    <div className="p-2 md:p-3 bg-green-50 text-green-600 rounded-xl shadow-sm border border-green-100 shrink-0">
-                      <CheckCircle2 size={18} className="md:w-5 md:h-5" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="font-bold text-gray-900 text-sm md:text-lg truncate">Checked In</p>
-                      <p className="text-xs md:text-sm text-gray-500 font-medium truncate">Office Location (Biometric)</p>
-                    </div>
+            {[1, 2, 3].map((item) => (
+              <div key={item} className="p-4 md:p-5 px-4 md:px-6 flex items-center justify-between hover:bg-white transition-colors cursor-pointer group">
+                <div className="flex items-center gap-3 md:gap-4 overflow-hidden">
+                  <div className="p-2 md:p-3 bg-green-50 text-green-600 rounded-xl shadow-sm border border-green-100 shrink-0 group-hover:bg-green-100 transition-colors">
+                    <CheckCircle2 size={18} className="md:w-5 md:h-5" />
                   </div>
-                  <div className="text-right shrink-0 pl-2">
-                    <p className="font-bold text-gray-900 text-sm md:text-lg">09:05 AM</p>
-                    <p className="text-[10px] md:text-sm text-gray-500 font-medium">Oct 24</p>
+                  <div className="min-w-0">
+                    <p className="font-bold text-gray-900 text-sm md:text-lg truncate">Checked In</p>
+                    <p className="text-xs md:text-sm text-gray-500 font-medium truncate">Office Location (Biometric)</p>
                   </div>
-               </div>
-             ))}
+                </div>
+                <div className="text-right shrink-0 pl-2">
+                  <p className="font-bold text-gray-900 text-sm md:text-lg">09:05 AM</p>
+                  <p className="text-[10px] md:text-sm text-gray-500 font-medium">Oct 24</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

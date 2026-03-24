@@ -19,10 +19,10 @@ export default function Sidebar({ role }) {
     ],
     admin: [
       { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-      { name: "My Users", href: "#", icon: Users },
-      { name: "Attendance", href: "#", icon: Clock },
-      { name: "Analytics", href: "#", icon: BarChart3 },
-      { name: "Reports", href: "#", icon: FileText },
+      { name: "My Users", href: "/admin/user", icon: Users }, 
+      { name: "Attendance", href: "/admin/attendance", icon: Clock }, 
+      { name: "Analytics", href: "/admin/analytics", icon: BarChart3 }, 
+      { name: "Reports", href: "/admin/reports", icon: FileText }, 
     ],
     user: [
       { name: "Dashboard", href: "/user", icon: LayoutDashboard },
@@ -39,7 +39,10 @@ export default function Sidebar({ role }) {
       <nav className="space-y-2">
         {links.map((link) => {
           const Icon = link.icon;
-          const isActive = pathname === link.href;
+          
+          // Checks if the current path exactly matches the link or is a sub-route
+          const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== '/admin' && link.href !== '/user' && link.href !== '/super-admin');
+          
           return (
             <Link
               key={link.name}
